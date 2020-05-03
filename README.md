@@ -37,7 +37,7 @@ Initial Schema:
 
 rails g model room name:string description:string user:references
 rails g model booking start_date:date end_date:date room:references user:references
-rails g dashboard
+rails g model dashboard
 rails db:migrate
 
 - add fields to User:
