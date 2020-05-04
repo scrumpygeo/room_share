@@ -52,9 +52,24 @@ has_many :rooms
   has_many :bookings, through: :rooms
 
 
+===
+Shallow Nesting:
+
+  https://edgeguides.rubyonrails.org/routing.html#shallow-nesting
 
 
+    resources :rooms do
+      resources :bookings, shallow: true
+    end
 
+  is same as:
+
+    resources :rooms do
+      resources :bookings, only: [:index, :new, :create]
+    end
+    resources :bookings, only: [:show, :edit, :update, :destroy]
+
+==
 
 
 
