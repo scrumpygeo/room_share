@@ -45,7 +45,7 @@ puts 'Creating 10 rooms...'
     guest_nr: rand(1..4),
     user: User.all.sample
   )
-  room.photo = "https://source.unsplash.com/400x300/?house,home"
+  room.photo = "https://source.unsplash.com/400x300/?bedrooms"
   room.save!
 end
 

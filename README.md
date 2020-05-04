@@ -2,6 +2,13 @@
 
 Version 1: 
 
+Home has all flats available with location search bar on it - default has last 6 added (b4 login and after)
+Dashboard has list of bookings for current user
+Rooms/index - list as result of query; all if none
+
+
+
+
 User posts room(s) he/she wishes to rent and availability dates
 
 Room images loaded via cloudinary
@@ -33,6 +40,8 @@ Initial Schema:
              +-------------+
 
 ```
+
+
 
 1. 
 rails g model room name:string description:string user:references
