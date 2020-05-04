@@ -34,7 +34,7 @@ Initial Schema:
 
 ```
 
-
+1. 
 rails g model room name:string description:string user:references
 rails g model booking start_date:date end_date:date room:references user:references
 rails g model dashboard
@@ -52,7 +52,10 @@ has_many :rooms
   has_many :bookings, through: :rooms
 
 
-===
+
+2. ROUTES
+==========
+
 Shallow Nesting:
 
   https://edgeguides.rubyonrails.org/routing.html#shallow-nesting
@@ -74,6 +77,7 @@ Shallow Nesting:
 rails db:drop db:create db:migrate
 ===
 
+3. SEED & MODEL MODIF.
 
 Next:
   - seed
@@ -106,11 +110,14 @@ NEED PRICE AND Nr GUESTS IN BOOKING
   rails generate migration AddInfoToBooking price:decimal guest_nr:integer
 
 
+4. CONTROLLERS
+==============
 
+rails g controller rooms index
 
+rails g controller bookings
 
-
-
+rails g dashboard index
 
 
 
