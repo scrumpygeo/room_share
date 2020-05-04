@@ -71,6 +71,7 @@ Shallow Nesting:
 
 ==
 
+rails db:drop db:create db:migrate
 
 
 
