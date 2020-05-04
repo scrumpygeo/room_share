@@ -101,6 +101,9 @@ in view:
     #=> €1,234.01
 
 
+NEED PRICE AND Nr GUESTS IN BOOKING
+
+  rails generate migration AddInfoToBooking price:decimal guest_nr:integer
 
 
 
@@ -129,4 +132,4 @@ in view:
 
 
 
-    
+
