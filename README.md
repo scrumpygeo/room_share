@@ -79,5 +79,23 @@ Next:
   - seed
   - 
 
-  ActiveRecord::HasManyThroughSourceAssociationNotFoundError: Could not find the source association(s) "booking" or :bookings in model Room. Try 'has_many :bookings, :through => :rooms, :source => <name>'. Is it one of user?
+add to room:
+  price
+  address:string
+  nr_guests:integer
+  photo:string
 
+rails generate migration AddInfoToRoom price:decimal address:string, city:string, guest_nr:integer photo:string
+
+  def change
+    add_column :rooms, :price, :decimal
+    add_column :rooms, :address, :string
+    add_column :rooms, :city, :string
+    add_column :rooms, :guest_nr, :integer
+    add_column :rooms, :photo, :string
+  end
+
+in view:
+  currency converted to bigdecimal: on output:
+    number_to_currency(price, :unit => "€")
+    #=> €1,234.01
