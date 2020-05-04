@@ -33,4 +33,31 @@ user = User.new(
 )
 user.save!
 
+
+puts 'Creating 10 rooms...'
+10.times do
+  room = Room.new(
+    name:    Faker::Address.community,
+    description: Faker::Quotes::Shakespeare.romeo_and_juliet_quote,
+    address: Faker::Address.street_address, 
+    city: Faker::Address.city,
+    price:  rand(25..50),
+    guest_nr: rand(1..4),
+    user: User.all.sample
+  )
+  room.photo = "https://source.unsplash.com/400x300/?house,home"
+  room.save!
+end
+
+puts 'Creating 10 bookings...'
+10.times do
+  booking = Booking.new(
+    start_date: 20200612,
+    end_date: 20200619,
+    user: User.all.sample,
+    room: Room.all.sample
+  )
+  booking.save!
+end
+
 puts 'Finito!'

@@ -99,3 +99,34 @@ in view:
   currency converted to bigdecimal: on output:
     number_to_currency(price, :unit => "€")
     #=> €1,234.01
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
