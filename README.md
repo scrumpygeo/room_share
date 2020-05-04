@@ -72,6 +72,12 @@ Shallow Nesting:
 ==
 
 rails db:drop db:create db:migrate
+===
 
 
+Next:
+  - seed
+  - 
+
+  ActiveRecord::HasManyThroughSourceAssociationNotFoundError: Could not find the source association(s) "booking" or :bookings in model Room. Try 'has_many :bookings, :through => :rooms, :source => <name>'. Is it one of user?
 
