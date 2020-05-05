@@ -4,3 +4,27 @@
     <p>For work or vacation. Find a place to stay! </p>
   </div>
 </div>
+
+<h3 class = "text-center mb-3">Check out our recently added rooms. </h3>
+
+<div class="container mt-3">
+  <div class="row">
+        <% @rooms.each do |room| %>
+
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            <%= link_to room_path(room) do %>
+              <div class="cardContainer">
+                <img class="card-img-top img-fluid" src="https://source.unsplash.com/400x300/?bedrooms&rand=<%= rand( 9999) %>" />
+                <div class="card-body">
+                    <h4 class="card-title"><%= room.name %></h4>
+                    <p class="card-text"> <%= room.city %></p>
+                    <p class="card-trip-pricing">€<%= room.price %>/night</p>
+                </div>     
+              </div>
+            <% end %>
+          </div>
+        <% end %> 
+    </div>
+  </div>
+
+</div>

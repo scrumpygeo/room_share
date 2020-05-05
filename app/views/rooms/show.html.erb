@@ -1,0 +1,9 @@
+<h1 class="text-center mt-3"><%= @room.name %></h1>
+<div class="container">
+  <p><%= @room.description %></p>
+  <p><%= @room.address %></p>
+  <p><%= @room.city %></p>
+  <p><%= @room.guest_nr %> guests</p>
+  <p>€<%= @room.price %></p>
+  <%= image_tag @room.photo %>
+</div>

@@ -37,7 +37,6 @@ gem 'simple_form'
 gem 'faker'
 
 
-
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'
   gem 'dotenv-rails'
