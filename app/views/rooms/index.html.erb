@@ -10,7 +10,7 @@
                 <div class="card-body">
                     <h4 class="card-title"><%= room.name %></h4>
                     <p class="card-text"> <%= room.city %></p>
-                    <p class="card-trip-pricing">€<%= room.price %>/night</p>
+                    <p class="card-trip-pricing">€<%=  number_with_precision(room.price, precision: 2) %>/night</p>
                 </div>     
               </div>
             <% end %>

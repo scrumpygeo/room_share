@@ -2,6 +2,36 @@
   <div class="banner-content">
     <h1>FIND A ROOM</h1>
     <p>For work or vacation. Find a place to stay! </p>
+
+
+
+ <div class="search-bar">
+    <div  class="form-inline padded">
+
+    <%= form_tag rooms_path, method: :get do %>
+        <%= text_field_tag :query,
+        params[:query],
+
+        placeholder: "Cricklewood"
+        %>
+        <div class="search">
+          <button type="submit" class="searchButton">
+            <i class="fa fa-search"></i>
+          </button>
+        </div>
+    <% end %>
+ 
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
   </div>
 </div>
 
@@ -18,7 +48,8 @@
                 <div class="card-body">
                     <h4 class="card-title"><%= room.name %></h4>
                     <p class="card-text"> <%= room.city %></p>
-                    <p class="card-trip-pricing">€<%= room.price %>/night</p>
+                    
+                    <p class="card-trip-pricing">€<%=  number_with_precision(room.price, precision: 2) %>/night</p>
                 </div>     
               </div>
             <% end %>

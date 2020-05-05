@@ -1,8 +1,18 @@
 class RoomsController < ApplicationController
   before_action :authenticate_user!, except: :index
   before_action :set_room, only: [:show]
+
   def index
-    @rooms = Room.all.last
+
+    if params[:query].present?
+      @rooms = Room.where(city: params[:query])
+      if @rooms.blank?
+        @rooms = Room.all
+        # send message
+      end
+    else
+      @rooms = Room.all
+    end
   end
 
   def show

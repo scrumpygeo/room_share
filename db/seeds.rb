@@ -40,7 +40,8 @@ puts 'Creating 10 rooms...'
     name:    Faker::Address.community,
     description: Faker::Quotes::Shakespeare.romeo_and_juliet_quote,
     address: Faker::Address.street_address, 
-    city: Faker::Address.city,
+    city:  %w[ London Paris Rome, Cricklewood ].sample,
+    # city: Faker::Address.city,
     price:  rand(25..50),
     guest_nr: rand(1..4),
     user: User.all.sample
