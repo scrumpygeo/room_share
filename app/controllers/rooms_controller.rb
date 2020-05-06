@@ -4,15 +4,17 @@ class RoomsController < ApplicationController
 
   def index
 
-    if params[:query].present?
-      @rooms = Room.where(city: params[:query])
-      if @rooms.blank?
-        @rooms = Room.all
-        # send message
-      end
-    else
-      @rooms = Room.all
+    @search = params["search"]
+    if @search.present?
+      @city = @search["city"]
+      @rooms = Room.where("city ILIKE ?", "%#{@city}%")
     end
+
+    if @rooms.blank?
+      @rooms = Room.all
+      # send sorrymessage
+    end
+
   end
 
   def show
