@@ -130,13 +130,22 @@ rails g dashboard index
 
 
 
-5. add fields to models
+5. Look at adding geolocation
+
+  add geocoder gem
+  rails g migration add_lat_to_rooms latitude:float longitude:float
 
 
-rails g migration add_lat_to_rooms latitude:float longitude:float
-rails g migration add_status_to_bookings status:string
+6. change address to street
+  also change seed
 
+  rails g migration ChangeColumnName
 
+    def change
+      rename_column :rooms, :address, :street
+    end
+  
+  rails db:reset db:migrate
 
 
 

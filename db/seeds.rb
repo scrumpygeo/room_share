@@ -1,4 +1,5 @@
 require 'faker'
+require 'csv'
 
 Booking.destroy_all
 Room.destroy_all
@@ -33,22 +34,46 @@ user = User.new(
 )
 user.save!
 
+# use csv for rooms
 
-puts 'Creating 10 rooms...'
-10.times do
-  room = Room.new(
-    name:    Faker::Address.community,
-    description: Faker::Quotes::Shakespeare.romeo_and_juliet_quote,
-    address: Faker::Address.street_address, 
-    city:  %w[ London Paris Rome, Cricklewood ].sample,
-    # city: Faker::Address.city,
-    price:  rand(25..50),
-    guest_nr: rand(1..4),
-    user: User.all.sample
-  )
-  room.photo = "https://source.unsplash.com/400x300/?bedrooms"
-  room.save!
+# CSV.foreach("db/RoomData.csv", headers: true) do |line|
+#   Room.new line_to_hash.except(%w{latitude longitude user})
+# end
+
+csv_text = File.read(Rails.root.join('db', 'room.csv'))
+csv = CSV.parse(csv_text, headers:true, :encoding => 'ISO-8859-1')
+
+puts 'Creating rooms...'
+csv.each do |row|
+  r = Room.new
+  r.name = row['name']
+  r.description = row['description']
+  r.street = row['street']
+  r.city = row['city']
+  r.price = row['price']
+  r.guest_nr = row['guest_nr']
+  r.user = User.all.sample
+  r.photo = "https://source.unsplash.com/400x300/?bedrooms"
+  r.save!
 end
+
+puts "There are now #{Room.count} rows in the rooms table"
+
+# puts 'Creating 10 rooms...'
+# 10.times do
+#   room = Room.new(
+#     name:    Faker::Address.community,
+#     description: Faker::Quotes::Shakespeare.romeo_and_juliet_quote,
+#     street: Faker::Address.street_address, 
+#     city:  %w[ London Paris Rome Cricklewood ].sample,
+#     # city: Faker::Address.city,
+#     price:  rand(25..50),
+#     guest_nr: rand(1..4),
+#     user: User.all.sample
+#   )
+#   room.photo = "https://source.unsplash.com/400x300/?bedrooms"
+#   room.save!
+# end
 
 puts 'Creating 10 bookings...'
 10.times do
