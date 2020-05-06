@@ -130,7 +130,11 @@ rails g dashboard index
 
 
 
+5. add fields to models
 
+
+rails g migration add_lat_to_rooms latitude:float longitude:float
+rails g migration add_status_to_bookings status:string
 
 
 
