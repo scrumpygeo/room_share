@@ -28,9 +28,13 @@ import "bootstrap";
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 
-import 'plugins/flatpickr'
+import flatpickr from "flatpickr"
+import "flatpickr/dist/themes/airbnb.css"
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
+  flatpickr(".datepicker", {
+    altInput: true
+  });
 });

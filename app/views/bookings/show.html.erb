@@ -1,11 +1,12 @@
 <div class="container mt-5">
   <div class="row">
 
-  <div class="text-center">
-  <p>You have just booked <%= @booking.room.name %> from <%= @booking.start_date %> 
-  to <%= @booking.end_date %> pending confirmation from owner.</p>
-      </div>
+    <div class="text-center">
+      <p>You have just booked <%= @booking.room.name %> from <%= @booking.start_date %> 
+  to   <%= @booking.end_date %> pending confirmation from owner.</p>
 
-      <p>click here to see a list of your bookings: </p>
-       <%= link_to "Bookings", bookings_path, class: "nav-item btn btn-ladle pt-2 mb-3 mt-3" %>
+  <br>
+    <p>click here to see a list of your bookings: </p>
+    <p>  <%= link_to "Bookings", bookings_path, class: "btn btn-warning pt-2 mb-3 mt-3" %> </p> 
+    </div>
    </div>   
