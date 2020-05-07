@@ -148,6 +148,8 @@ rails g dashboard index
   rails db:reset db:migrate
 
 
+7. Delete booking **only if pending**
+
 
 
 

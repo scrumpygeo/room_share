@@ -29,8 +29,10 @@ class BookingsController < ApplicationController
   end
 
   def destroy
-    @booking.destroy
-    redirect_to bookings_path, notice: 'Booking was successfully removed.' 
+    if @booking.status != 'Pending'
+      @booking.destroy
+      redirect_to bookings_path, notice: 'Booking was successfully removed.' 
+    end
   end
 
   private
