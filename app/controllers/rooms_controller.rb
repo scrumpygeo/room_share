@@ -15,6 +15,15 @@ class RoomsController < ApplicationController
       # send sorrymessage
     end
 
+    @rooms = Room.geocoded # returns rooms with coordinates
+
+    @markers = @rooms.map do |room|
+      {
+        lat: room.latitude,
+        lng: room.longitude
+      }
+    end
+
   end
 
   def show

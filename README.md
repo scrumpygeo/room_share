@@ -152,6 +152,27 @@ rails g dashboard index
 
 
 
+Next Section
+============
+
+map.
+  - google or mapbox
+
+
+
+
+Later
+======
+
+Let user offer room for rent
+
+i.  room.user_id = room owner
+ii. room/new to create new room
+
+iii. to edit/delete room: add buttons on 
+
+iv. user.host = true if he has registered to be a host
+
 
 
 

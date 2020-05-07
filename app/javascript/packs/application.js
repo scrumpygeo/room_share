@@ -30,6 +30,9 @@ import "bootstrap";
 
 import flatpickr from "flatpickr"
 import "flatpickr/dist/themes/airbnb.css"
+import { initMapbox } from '../plugins/init_mapbox';
+import 'mapbox-gl/dist/mapbox-gl.css';
+
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
@@ -37,4 +40,5 @@ document.addEventListener('turbolinks:load', () => {
   flatpickr(".datepicker", {
     altInput: true
   });
+  initMapbox();
 });
