@@ -1,9 +1,11 @@
-<div class="container">
+<div class="container mt-5">
   <div class="row">
 
   <div class="text-center">
-
-    <h3>  <strong><i class="fa fa-star" aria-hidden="true"></i> We are waiting for <%= @booking.room.user.first_name %> to confirm your request </strong> <i class="fa fa-star" aria-hidden="true"></i></h3>
-    <h3> See ya! </h3>
+  <p>You have just booked <%= @booking.room.name %> from <%= @booking.start_date %> 
+  to <%= @booking.end_date %> pending confirmation from owner.</p>
       </div>
+
+      <p>click here to see a list of your bookings: </p>
+       <%= link_to "Bookings", bookings_path, class: "nav-item btn btn-ladle pt-2 mb-3 mt-3" %>
    </div>   

@@ -1,6 +1,10 @@
 class BookingsController < ApplicationController
 
-def new
+def index 
+  @bookings = Booking.where(user_id: current_user.id)
+end
+
+  def new
   @room = Room.find([:room_id])
   @booking = Booking.new
 end
@@ -14,9 +18,9 @@ def create
   @booking.status = "Pending"
  
   if @booking.save
-    redirect_to room_bookings_path(@booking)
+    redirect_to booking_path(@booking)
   else
-    redirect_to room_path(@room)
+    render :new
   end
 end
 
