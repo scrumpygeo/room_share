@@ -83,7 +83,7 @@ puts 'Creating 10 bookings...'
     user: User.all.sample,
     room: Room.all.sample,
     guest_nr: 2,
-    price:  5*rand(25..50),
+    price:  5*rand(25..50)
   )
   booking.save!
 end

@@ -12,10 +12,10 @@ class RoomsController < ApplicationController
 
     if @rooms.blank?
       @rooms = Room.all
-      # send sorrymessage
+      flash[:notice] = "Sorry. We didn't find any suitable rooms in that area. Please try again!"
     end
 
-    @rooms = Room.geocoded # returns rooms with coordinates
+    # @rooms = Room.geocoded # returns rooms with coordinates
 
     @markers = @rooms.map do |room|
       {
