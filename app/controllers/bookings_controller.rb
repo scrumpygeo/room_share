@@ -17,7 +17,7 @@ class BookingsController < ApplicationController
     @booking.room = @room
     @booking.user = current_user
     @booking.status = "Pending"
-  
+      
     if @booking.save
       redirect_to booking_path(@booking)
     else
@@ -42,7 +42,7 @@ class BookingsController < ApplicationController
     end
 
     def booking_params
-      params.require(:booking).permit(:start_date, :end_date, :guests_nr, :status)
+      params.require(:booking).permit(:start_date, :end_date, :guest_nr, :status)
     end
   
 end

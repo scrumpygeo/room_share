@@ -3,7 +3,7 @@
 <% @bookings.each do |booking| %>
 
    <p><%= link_to booking.room.name, booking_path(booking)  %>
-   : <%= booking.start_date %> - <%= booking.end_date %>. Status: <%= booking.status %>
+   : <%= booking.start_date %> - <%= booking.end_date %>. Status: <%= booking.status %> <%= booking.id %>
 
   <% if booking.status == 'Pending' %>
     <%= link_to "Delete", booking_path(booking), method: :delete, data: { confirm: 'Deleting. Are you sure?'}, class: "btn btn-sm btn-danger"  %>
