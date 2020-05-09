@@ -17,6 +17,12 @@ class BookingsController < ApplicationController
     @booking.room = @room
     @booking.user = current_user
     @booking.status = "Pending"
+
+    if @booking.end_date && @booking.start_date
+      @booking.price = (@booking.end_date - @booking.start_date).to_f * @booking.room.price.to_f
+    else
+      @booking.price = 0
+    end
       
     if @booking.save
       redirect_to booking_path(@booking)
@@ -29,9 +35,11 @@ class BookingsController < ApplicationController
   end
 
   def destroy
-    if @booking.status != 'Pending'
+    if @booking.status == 'Pending'
       @booking.destroy
       redirect_to bookings_path, notice: 'Booking was successfully removed.' 
+    else
+      redirect_to bookings_path, notice: "Sorry. Confirmed bookings can only be cancelled by contacting room owner directly."
     end
   end
 
