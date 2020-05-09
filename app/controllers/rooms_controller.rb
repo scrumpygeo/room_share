@@ -8,6 +8,8 @@ class RoomsController < ApplicationController
     if @search.present?
       @city = @search["city"]
       @rooms = Room.where("city ILIKE ?", "%#{@city}%")
+    else
+      @rooms = Room.all, notice: 'No location selected so here are some of our rooms.'
     end
 
     if @rooms.blank?
