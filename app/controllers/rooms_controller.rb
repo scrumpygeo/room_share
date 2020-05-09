@@ -3,18 +3,18 @@ class RoomsController < ApplicationController
   before_action :set_room, only: [:show]
 
   def index
-
+    
     @search = params["search"]
     if @search.present?
       @city = @search["city"]
       @rooms = Room.where("city ILIKE ?", "%#{@city}%")
-    else
-      @rooms = Room.all, notice: 'No location selected so here are some of our rooms.'
     end
 
+
+
     if @rooms.blank?
+      @msg = "Sorry. No suitable rooms in your desired location. Please try again."
       @rooms = Room.all
-      flash[:notice] = "Sorry. We didn't find any suitable rooms in that area. Please try again!"
     end
 
     # @rooms = Room.geocoded # returns rooms with coordinates
@@ -25,7 +25,8 @@ class RoomsController < ApplicationController
         lng: room.longitude
       }
     end
-
+    
+    flash[:notice] = @msg
   end
 
   def show
