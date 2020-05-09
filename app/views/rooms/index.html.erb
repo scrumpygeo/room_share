@@ -1,26 +1,39 @@
-
-<div class="container mt-3">
+<div class="container-fluid mt-3">
   <div class="row">
-        <% @rooms.each do |room| %>
+    <div class="col-sm-8">
 
-          <div class="col-sm-6 col-md-4 col-lg-3">
+    <div class="row">
+
+      <% @rooms.each do |room| %>
+        <div class="col-xs-12 col-sm-6 col-md-4  ">
+  
             <%= link_to room_path(room) do %>
-              <div class="cardContainer">
-                <img class="card-img-top img-fluid" src="https://source.unsplash.com/400x300/?bedrooms&rand=<%= rand( 9999) %>" />
-                <div class="card-body">
-                    <h4 class="card-title"><%= room.name %></h4>
-                    <p class="card-text"> <%= room.city %></p>
-                    <p class="card-trip-pricing">£<%=  number_with_precision(room.price, precision: 2) %>/night</p>
-                </div>     
-              </div>
-            <% end %>
-          </div>
-        <% end %> 
+                <div class="cardContainer">
+                  <img class="card-img-top img-fluid" src="https://source.unsplash.com/400x300/?bedrooms&rand=<%= rand( 9999) %>" />
+                  <div class="card-body">
+                      <h4 class="card-title"><%= room.name %></h4>
+                      <p class="card-text"> <%= room.city %></p>
+                      <p class="card-trip-pricing">£<%=  number_with_precision(room.price, precision: 2) %>/night</p>
+                  </div>     
+                </div>   <!-- end of cardContainer -->
+             <% end %>
 
-  <div id="map"
-        style="width: 100%; height: 600px;"
-        data-markers="<%= @markers.to_json %>"
-        data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
-  </div>
-  </div>
+             
+        </div>  <!-- end of xs-12 -->
+
+      <% end %> 
+  </div>  <!-- end of inner row -->
+
+
+  </div>    <!-- end of sm-8-->
+  
+  <div class="col-sm-4">
+    <div class="map-container">
+        <div id="map"
+              data-markers="<%= @markers.to_json %>"
+              data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+        </div>  
+    </div>  <!-- map container end-->
+  </div>  <!-- col-sm-4 end  -->
+ </div>  <!---end of row -->
 </div>
