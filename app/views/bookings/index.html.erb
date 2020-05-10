@@ -2,42 +2,47 @@
 
   <h1 class="text-center mt-3">Your Booked Rooms</h1>
 <div class="container-booking">
-  <ul>
-    <% @bookings.each do |booking| %>
-    <li class="booking-li">
-      <%# <p>image goes here</p> %>
-       
-       <img class="booking-image hidden-xs" width: 400, height: 300, crop: :fill, src="https://source.unsplash.com/400x300/?bedrooms&rand=<%= rand( 9999) %>" />
-      <div class="booking-body">
-        <h3><%= booking.room.name %></h3>
-        <p>City: <strong><%= booking.room.city %></strong></p>
-        <p>Address: <strong><%= booking.room.street %></strong></p>
-        <p>Period: <strong> <%= booking.start_date.strftime("%a, %e %b %Y") %> - <%= booking.end_date.strftime("%a, %e %b %Y") %></strong></p>
-        <p>Guests: <strong><%= booking.guest_nr %></strong></p>
-        <p>Total price: <strong>£ <%= booking.price %> </strong></p>
-      </div> <!-- end booking-body -->
 
-       <div>
-   <ul class="list-unstyled hidden-sm hidden-xs padded">
-      <% if booking.status == 'Pending' %>
-        <li>Confirmation <strong class="text-warning">Pending</strong></li>
-        <li class="text-right"><%= link_to "Delete this booking", booking_path(booking), method: :delete, class:"btn btn-outline-danger", data: {confirm: "Are you sure"} %></li>
-      <% else %>
-        <li>Booking <strong class="text-success">Confirmed</strong></li>
-       <li> <%= mail_to booking.room.user.email, "Email room owner to cancel", target: :_blank %></li>
+  <div class="row">
+    <div class="col">
+      <% @bookings.each do |booking| %>
+
+      <div class="row booking-li"> <!-- inner row-->
+
+          <div class="col-sm-3 col-md-4"> 
+            <img class="booking-image hidden-xs" width:100%%, height: 100%%, crop: :fill, src="https://source.unsplash.com/400x300/?bedrooms&rand=<%= rand( 9999) %>" />
+          </div>
+
+
+          <div class="col-sm-4 col-sm-4">
+            <h3><%= booking.room.name %></h3>
+            <p>City: <strong><%= booking.room.city %></strong></p>
+            <p>Address: <strong><%= booking.room.street %></strong></p>
+            <p>Period: <strong> <%= booking.start_date.strftime("%a, %e %b %Y") %> - <%= booking.end_date.strftime("%a, %e %b %Y") %></strong></p>
+            <p>Guests: <strong><%= booking.guest_nr %></strong></p>
+            <p>Total price: <strong>£ <%= booking.price %> </strong></p>
+          </div>
+
+
+
+
+          <div class="col-sm-4 col-md-4" >
+            <div class="list-unstyled hidden-sm hidden-xs padded">
+                <% if booking.status == 'Pending' %>
+                  <p class="text-center">Confirmation <strong class="text-warning">Pending</strong></p>
+                  <p class="text-center"><%= link_to "Delete this booking", booking_path(booking), method: :delete, class:"btn btn-outline-danger", data: {confirm: "Are you sure"} %></p>
+                <% else %>
+                  <p class="text-center">Booking <strong class="text-success">Confirmed</strong></p>
+                  <p class="text-center"> <%= mail_to booking.room.user.email, "Email room owner to cancel", target: :_blank %></p>
+                <% end %>
+              </div>
+          </div>
+
+        </div> <!-- end inner row -->
       <% end %>
-   </ul>
- </div>
-    </li>
- 
 
+   </div>  <!--  end col-->
+  </div> <!-- end row -->
+</div> <!-- container-booking -->
 
-    
-    <% end %>
-
-  </ul>
-
-
-  </div> <!-- end container-booking -->
-  
 </div>

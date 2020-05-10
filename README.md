@@ -174,8 +174,8 @@ iii. to edit/delete room: add buttons on
 iv. user.host = true if he has registered to be a host
 
 
-
-
+  <img class="booking-image hidden-xs" width: 400, height: 300, crop: :fill, src="https://source.unsplash.com/400x300/?bedrooms&rand=<%= rand( 9999) %>" />
+<div class="col-sm-6 col-md-8 col-lg-9 col-xl-10"
 
 
 
