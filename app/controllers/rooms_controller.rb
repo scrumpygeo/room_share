@@ -22,10 +22,11 @@ class RoomsController < ApplicationController
     @markers = @rooms.map do |room|
       {
         lat: room.latitude,
-        lng: room.longitude
+        lng: room.longitude,
+        infowindow: render_to_string(partial: "infowindow", locals: { room: room }) 
       }
     end
-    
+
     flash[:notice] = @msg
   end
 
