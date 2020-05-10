@@ -1,0 +1,41 @@
+.container-booking {
+  width: 75%;
+  justify-content: text-center;
+  margin: 0 auto;
+}
+
+.booking-li{
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  border-radius: 3px;
+  transition: all 0.15s ease;
+
+  &:hover {
+    background: rgb(230,230,230);
+    cursor: pointer;
+  }
+}
+
+.booking-body {
+  flex: 1 1 auto;
+  h3 {
+    font-weight: bold;
+    font-size: 23px;
+    margin-top: 0;
+    font-family: 'Kalam', cursive;
+  }
+  p {
+    font-weight: lighter;
+    color: #4C4C4C;
+    margin-bottom: 0;
+  }
+}
+
+/* Room image */
+.booking-image {
+  border-radius: 10px;
+  margin-right: 20px;
+  width: 175px;
+  height: 145px;
+}
