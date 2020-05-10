@@ -1,3 +1,5 @@
-
-<h3><%= room.name %></h3>
-<p><%= room.description %></p>
+<div>
+  <h4><%= room.name %></h4>
+  <p><%= room.description %></p>
+  <p>£<%=  number_with_precision(room.price, precision: 2) %>/night</p>
+</div>

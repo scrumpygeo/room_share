@@ -9,13 +9,26 @@
   top: 50px;
 }
 
-
-.mapboxgl-popup {
+.mapboxgl-popup div {
   max-width: 200px;
+  background: rgba(210, 210, 210, 0.6);
+  color: rgb(20,20,20);
+  border-radius: 5%
 }
 
-.mapboxgl-popup-content {
-  text-align: center;
-  font-family: 'Open Sans', sans-serif;
-  background-color:  #e4d96f;
-}
+// .mapboxgl-popup-content {
+//   text-align: center;
+//   font-family: 'Open Sans', sans-serif;
+//   background-color:  #e4d96f;
+// }
+
+// .mapboxgl-popup-content h4 {
+//   background: #E4D96F;
+//   color: black;
+//   margin: 0;
+//   display: block;
+//   padding: 10px;
+//   border-radius: 3px 3px 0 0;
+//   font-weight: 700;
+//   margin-top: -15px;
+// }
