@@ -5,8 +5,8 @@ Booking.destroy_all
 Room.destroy_all
 User.destroy_all
 
-puts 'Creating 10 users...'
-10.times do
+puts 'Creating 5 users...'
+5.times do
   user = User.new(
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
@@ -83,6 +83,7 @@ puts 'Creating 10 bookings...'
     user: User.all.sample,
     room: Room.all.sample,
     guest_nr: 2,
+    status:  ["Pending", "Confirmed"].sample,
     price:  5*rand(25..50)
   )
   booking.save!

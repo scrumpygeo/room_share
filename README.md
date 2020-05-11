@@ -183,6 +183,7 @@ iv. user.host = true if he has registered to be a host
 <div class="col-sm-6 col-md-8 col-lg-9 col-xl-10"
 
 
+User(#16360) expected, got [#<User id: 27, email: "julio.dickinson@jones.io", created_at: "2020-05-11 15:25:13", updated_at: "2020-05-11 15:25:13", first_name: "Antonia", last_name: "Kirlin">, "https://source.unsplash.com/400x300/?bedrooms"] which is an instance of Array(#4240)
 
 
 
