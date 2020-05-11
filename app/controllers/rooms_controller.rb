@@ -1,6 +1,6 @@
 class RoomsController < ApplicationController
   before_action :authenticate_user!, except: :index
-  before_action :set_room, only: [:show]
+  before_action :set_room, only: [:show,  :create]
 
   def index
     
@@ -10,15 +10,12 @@ class RoomsController < ApplicationController
       @rooms = Room.where("city ILIKE ?", "%#{@city}%")
     end
 
-
-
     if @rooms.blank?
       @msg = "Sorry. No suitable rooms in your desired location. Please try again."
       @rooms = Room.all
     end
 
     # @rooms = Room.geocoded # returns rooms with coordinates
-
     @markers = @rooms.map do |room|
       {
         lat: room.latitude,
@@ -32,6 +29,21 @@ class RoomsController < ApplicationController
 
   def show
     @booking = Booking.new
+  end
+
+  def new
+    @room = Room.new
+  end
+
+  def create 
+    # @booking = Booking.new(flat_params)
+    @room = Room.new(room_params)
+    @room.user = current_user
+    if @room.save
+      redirect_to rooms_path
+    else
+      render :new
+    end
   end
 
   private
