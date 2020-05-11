@@ -1,6 +1,6 @@
 class RoomsController < ApplicationController
   before_action :authenticate_user!, except: :index
-  before_action :set_room, only: [:show, :edit, :update]
+  before_action :set_room, only: [:show, :edit, :update, :destroy]
 
   def index
     
@@ -54,8 +54,9 @@ class RoomsController < ApplicationController
     redirect_to dashboards_path
   end
 
-  def delete
-
+  def destroy
+      @room.destroy
+      redirect_to dashboards_path, notice: 'Room was successfully removed.' 
   end
 
   private

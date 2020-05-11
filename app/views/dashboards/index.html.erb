@@ -1,35 +1,56 @@
- <div class="container-fluid">
- <h3 class="text-center">Welcome <%= current_user.first_name%>!</h3>
+<div class="container-fluid">
 
- <h4 class="text-center pb-3">These are all your properties </h4>
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col ">Name</th>
+          <th scope="col">Description</th>
+          <th scope="col">Street</th>
+          <th scope="col">City</th>
+          <th scope="col">Max Guests</th>
+          <th scope="col">Daily Rate (£)</th>
+        </tr>
+      </thead>
 
-  <div class="row">
-    <% @rooms.each do |room| %>
-    <div class="col-xs-12 col-sm-10 offset-sm-1">
+    <tbody>
+        <% @rooms.each do |room| %>
 
-      <div class="card-product mb-2">
+      <tr>
+        <td>
+          <%= room.name %>
+        </td>
+        <td>
+          <%= room.description%>
+        </td>
+        <td>
+          <%= room.street %>
+        </td>
+        <td>
+          <%= room.city %>
+        </td>
+        <td>
+          <%= room.guest_nr %>
+        </td>
+        <td>
+          <%= number_with_precision room.price, precision: 2 %>
+        </td>
+        <td>
+          <%= link_to  edit_room_path(room), class: "text-success" do %>
+             <i class="fas fa-edit"></i>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to  room_path(room), method: :delete,  data: {confirm: "Are you sure"}, class: "text-dark" do  %>      
+            <i class="fas fa-trash-alt"></i>
+          <% end %>
+        </td>
+      </tr>
+        <% end %>
+    </tbody>
 
-      <%= link_to "Edit this room", edit_room_path(room),  class:"btn btn-outline-success" %>
-      <%= link_to "Delete this room", rooms_path(room), method: :delete, class:"btn btn-outline-danger", data: {confirm: "Are you sure"} %>
-
-
-
-
-        <%= room.name %>
-     
-          </div>
-
-      </div>
-    </div>
-    <% end %>
-</div>
-
-
-
-
-
-
-
-
+  </table>
+       
+  </div>
  </div>
  
