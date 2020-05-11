@@ -1,0 +1,14 @@
+ <%= simple_form_for @room do |f| %>
+     <%= f.input :name, as: :string, required: true %>
+     <%= f.input :description, as: :text, required: true %>
+     <%= f.input :price, as: :decimal, required: true %>
+     <%= f.input :street, as: :string, required: true %>
+     <%= f.input :city, as: :string, required: true %>
+     <%= f.input :guest_nr, as: :integer, required: true, label: "Number of Guests" %>
+     <%= f.input :photo, as: :string, required: false %>
+     <% if controller_name == 'rooms' && action_name == 'new' %>
+        <%= f.button :submit, "Add Room", class: "btn btn-primary" %>
+      <% elsif controller_name == 'rooms' && action_name == 'edit' %>
+        <%= f.button :submit, "Save Changes", class: "btn btn-primary" %>
+      <% end %>
+    <% end %>

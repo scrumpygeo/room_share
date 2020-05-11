@@ -1,23 +1,22 @@
  <div class="container-fluid">
- <h1 class="text-center">Welcome <%= current_user.first_name%>!</h1>
+ <h3 class="text-center">Welcome <%= current_user.first_name%>!</h3>
 
- <h3 class="text-center pb-3">Here you can find your bookings </h3>
+ <h4 class="text-center pb-3">These are all your properties </h4>
 
   <div class="row">
-    <% @user_bookings.each do |booking| %>
+    <% @rooms.each do |room| %>
     <div class="col-xs-12 col-sm-10 offset-sm-1">
 
       <div class="card-product mb-2">
 
-          <div class="card-product-infos">
-            <h2 ><strong><em><%= booking.room.name.upcase %></em></strong></h2>
-            <p><strong> Check-in: </strong><%= booking.start-date %>
-          - <strong> Check-out: </strong><%= booking.end_date %></p>
-            <p><strong>Guests: </strong><%= booking.guest_nr %>
-            <strong style="margin-left: 8px;">    € </strong><%= booking.room.price %></p>
-            <p><strong> Status: </strong><%= booking.status %></p>
+      <%= link_to "Edit this room", edit_room_path(room),  class:"btn btn-outline-success" %>
+      <%= link_to "Delete this room", rooms_path(room), method: :delete, class:"btn btn-outline-danger", data: {confirm: "Are you sure"} %>
 
 
+
+
+        <%= room.name %>
+     
           </div>
 
       </div>

@@ -1,6 +1,6 @@
 class RoomsController < ApplicationController
   before_action :authenticate_user!, except: :index
-  before_action :set_room, only: [:show]
+  before_action :set_room, only: [:show, :edit, :update]
 
   def index
     
@@ -40,10 +40,22 @@ class RoomsController < ApplicationController
     @room = Room.new(room_params)
     @room.user = current_user
     if @room.save
-      redirect_to rooms_path
+      redirect_to dashboards_path
     else
       render :new
     end
+  end
+
+  def edit 
+  end
+
+  def update 
+    @room.update(room_params)
+    redirect_to dashboards_path
+  end
+
+  def delete
+
   end
 
   private
