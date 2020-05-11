@@ -126,7 +126,7 @@ rails g controller rooms index
 
 rails g controller bookings
 
-rails g dashboard index
+rails g controller dashboards index
 
 
 
@@ -151,12 +151,17 @@ rails g dashboard index
 7. Delete booking **only if pending**
 
 
+8. mapbox section
 
-Next Section
-============
 
-map.
-  - google or mapbox
+
+9. create room
+
+
+
+10. create dashboard
+    rails g controller dashboard index
+
 
 
 
