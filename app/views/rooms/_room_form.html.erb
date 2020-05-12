@@ -5,7 +5,11 @@
      <%= f.input :street, as: :string, required: true %>
      <%= f.input :city, as: :string, required: true %>
      <%= f.input :guest_nr, as: :integer, required: true, label: "Number of Guests" %>
-     <%= f.input :photo, as: :string, required: false %>
+
+  
+    <%= f.input :photo, as: :file,label: "Add a picture", label_html: {class: "label_form"}   %>
+
+
      <% if controller_name == 'rooms' && action_name == 'new' %>
         <%= f.button :submit, "Add Room", class: "btn btn-primary" %>
       <% elsif controller_name == 'rooms' && action_name == 'edit' %>

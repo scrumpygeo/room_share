@@ -36,7 +36,7 @@ gem 'simple_form'
 
 gem 'faker'
 gem 'geocoder'
-
+gem 'cloudinary', '~> 1.12.0'
 
 group :development, :test do  gem 'pry-byebug'
   gem 'pry-rails'

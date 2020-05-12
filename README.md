@@ -187,7 +187,114 @@ User(#16360) expected, got [#<User id: 27, email: "julio.dickinson@jones.io", cr
 
 
 
+room show
+ <%= image_tag @room.photo, class: "d-block w-100 rounded mt-3", width: 400, height: 300 %>
 
+
+     <%= f.input :photo, as: :string, required: false %>  in form - removed
+
+CLOUDINARY SETUP  
+---------------
+
+1. add gem 'cloudinary'
+2.   rails active_storage:install
+      -> u now have config/storage.yml file
+
+      # config/storage.yml
+      cloudinary:
+        service: Cloudinary
+      Replace :local by :cloudinary in the config:
+
+      # config/environments/development.rb
+      config.active_storage.service = :cloudinary
+
+3. rails db:migrate 
+
+4. in rooms.rb model add:
+     has_one_attached :photo       # or image - callit whatever.
+
+
+5. View & Controller
+    <!-- app/views/articles/_form.html.erb -->
+    <%= simple_form_for(article) do |f| %>
+      <!-- [...] -->
+      <%= f.input :photo, as: :file %>
+      <!-- [...] -->
+    <% end %>
+
+
+6.  # app/controllers/articles_controller.rb
+    def article_params
+      params.require(:article).permit(:title, :body, :photo)
+    end
+
+
+
+7. Displaying the image
+    <!-- app/views/articles/show.html.erb -->
+    <%= cl_image_tag @article.photo.key, height: 300, width: 400, crop: :fill %>
+
+8. Usage in background-image
+  Example: Card component.
+
+  You must use cl_image_path
+
+<div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @article.photo.key, height: 300, width: 400, crop: :fill %>')">
+  Cool article
+</div>
+
+
+9. Seed
+You can upload from a URL.
+
+require "open-uri"
+
+file = URI.open('https://giantbomb1.cbsistatic.com/uploads/original/9/99864/2419866-nes_console_set.png')
+article = Article.new(title: 'NES', body: "A great console")
+article.photo.attach(io: file, filename: 'nes.png', content_type: 'image/png')
+
+10.  Here we write article.photo.attach(...) because we wrote has_one_attached :photo in app/models/article.rb
+
+      Helpful Active Storage methods
+      @article.photo.attached? #=> true/false
+      @article.photo.purge #=> Destroy the photo
+
+11. Multiple images
+    If you want to have many attached images, you can define a different relationship in your model:
+
+    class Article < ApplicationRecord
+      has_many_attached :photos
+    end
+
+
+12. View & Controller
+      <!-- app/views/articles/_form.html.erb -->
+      <%= simple_form_for(article) do |f| %>
+        <!-- [...] -->
+        <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+        <!-- [...] -->
+      <% end %>
+      # app/controllers/articles_controller.rb
+      def article_params
+        params.require(:article).permit(:title, :body, photos: [])
+      end
+      <!-- app/views/articles/show.html.erb -->
+      <% @article.photos.each do |photo| %>
+        <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+      <% end %>
+
+
+13.  Production
+Replace :local by :cloudinary in the config:
+
+# config/environments/production.rb
+config.active_storage.service = :cloudinary
+Make sure to push your CLOUDINARY_URL env variable to Heroku:
+
+heroku config:set CLOUDINARY_URL=cloudinary://166....
+Check with:
+
+heroku config
 
 
 

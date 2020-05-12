@@ -2,7 +2,8 @@
   <div class="row">
     <div class="col-8 offset-2">
   
-      <%= image_tag @room.photo, class: "d-block w-100 rounded mt-3", width: 400, height: 300 %>
+
+      <%= cl_image_tag @room.photo.key, class: "d-block w-100 rounded mt-3", height: 300, width: 400, crop: :fill %>
   
       <h1 class="text-center my-3"><%= @room.name %></h1>
      
