@@ -1,56 +1,54 @@
-<div class="container-fluid">
+<div class="container-booking mt-4">
+  <div class="row">
+    <div class="col">
 
-  <div class="table-responsive">
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th scope="col ">Name</th>
-          <th scope="col">Description</th>
-          <th scope="col">Street</th>
-          <th scope="col">City</th>
-          <th scope="col">Max Guests</th>
-          <th scope="col">Daily Rate (£)</th>
-        </tr>
-      </thead>
 
-    <tbody>
-        <% @rooms.each do |room| %>
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col ">Name</th>
+                <th scope="col">Street</th>
+                <th scope="col">City</th>
+              </tr>
+            </thead>
 
-      <tr>
-        <td>
-          <%= room.name %>
-        </td>
-        <td>
-          <%= room.description%>
-        </td>
-        <td>
-          <%= room.street %>
-        </td>
-        <td>
-          <%= room.city %>
-        </td>
-        <td>
-          <%= room.guest_nr %>
-        </td>
-        <td>
-          <%= number_with_precision room.price, precision: 2 %>
-        </td>
-        <td>
-          <%= link_to  edit_room_path(room), class: "text-success" do %>
-             <i class="fas fa-edit"></i>
-          <% end %>
-        </td>
-        <td>
-          <%= link_to  room_path(room), method: :delete,  data: {confirm: "Are you sure"}, class: "text-dark" do  %>      
-            <i class="fas fa-trash-alt"></i>
-          <% end %>
-        </td>
-      </tr>
-        <% end %>
-    </tbody>
+          <tbody>
+              <% @rooms.each do |room| %>
 
-  </table>
-       
+            <tr>
+              <td>
+               <%= link_to  room.name, dashboard_path(room) %>
+              
+              </td>
+
+              <td>
+                <%= room.street %>
+              </td>
+              <td>
+                <%= room.city %>
+              </td>
+              <td>
+                <%= link_to  edit_room_path(room), class: "text-success" do %>
+                  <i class="fas fa-edit"></i>
+                <% end %>
+              </td>
+              <td>
+                <%= link_to  room_path(room), method: :delete,  data: {confirm: "Are you sure"}, class: "text-dark" do  %>      
+                  <i class="fas fa-trash-alt"></i>
+                <% end %>
+              </td>
+            </tr>
+              <% end %>
+          </tbody>
+
+        </table>
+            
+        </div>
+
+     </div>
   </div>
- </div>
+</div>
+
+ 
  

@@ -33,7 +33,7 @@
                   <p class="text-center"><%= link_to "Delete this booking", booking_path(booking), method: :delete, class:"btn btn-outline-danger", data: {confirm: "Are you sure"} %></p>
                 <% else %>
                   <p class="text-center">Booking <strong class="text-success">Confirmed</strong></p>
-                  <p class="text-center"> <%= mail_to booking.room.user.email, "Email room owner to cancel", target: :_blank %></p>
+                  <p class="text-center"> <%= mail_to booking.room.user.email, "Email owner to cancel", target: :_blank %></p>
                 <% end %>
               </div>
           </div>

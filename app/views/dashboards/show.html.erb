@@ -1,0 +1,22 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-8 offset-2">
+  
+      <%= image_tag @room.photo, class: "d-block w-100 rounded mt-3", width: 400, height: 300 %>
+  
+      <h1 class="text-center my-3"><%= @room.name %></h1>
+     
+        <div class="col-md-6 offset-md-3">
+          <p><%= @room.description %></p>
+          <p><%= @room.street %>, <%= @room.city %></p>
+          <p>Guests: <%= @room.guest_nr %> &nbsp;&nbsp;&nbsp;&nbsp;     £<%=  number_with_precision(@room.price, precision: 2) %>  </p>
+          <p><%= link_to dashboards_path do %> 
+          <i class="fas fa-2x fa-arrow-circle-left text-primary"></i>
+          <% end %>
+          </p>
+        </div>
+      
+      
+  </div>
+</div>   <!-- row -->
+</div>
