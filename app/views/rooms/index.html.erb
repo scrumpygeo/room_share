@@ -9,7 +9,15 @@
   
             <%= link_to room_path(room) do %>
                 <div class="cardContainer">
-                  <img class="card-img-top img-fluid" src="https://source.unsplash.com/400x300/?bedrooms&rand=<%= rand( 9999) %>" />
+                
+          <% if room.photo.attached? %>
+            <%= cl_image_tag @room.photo.key, class: "d-block w-00 rounded mt-3", width: 520, height: 400, crop: :fill %>
+          <% else %>
+            <%= image_tag "No_image_available", class: "d-block w-100 rounded mt-3", width: 520, height: 400, crop: :fill %>
+          <% end %>             
+                  
+                
+                  
                   <div class="card-body">
                       <h4 class="card-title"><%= room.name %></h4>
                       <p class="card-text"> <%= room.city %></p>

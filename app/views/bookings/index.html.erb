@@ -9,9 +9,15 @@
 
       <div class="row booking-li"> <!-- inner row-->
 
-          <div class="col-sm-3 col-md-4"> 
-            <img class="booking-image hidden-xs" width:100%%, height: 100%%, crop: :fill, src="https://source.unsplash.com/400x300/?bedrooms&rand=<%= rand( 9999) %>" />
-          </div>
+
+      <div class="show-banner">
+            <% if booking.room.photo.attached? %>
+            <%= cl_image_tag @room.photo.key, class: "d-block w-100 rounded mt-3 mx-auto", width: 300, height: 400, crop: :fill %>
+            <% else %>
+            <%= image_tag "No_image_available", class: "d-block w-100 rounded mt-3  mx-auto", width: 300, height: 400, crop: :fill %>
+            <% end %>
+      </div>
+
 
 
           <div class="col-sm-4 col-sm-4">

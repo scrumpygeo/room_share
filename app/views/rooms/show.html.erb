@@ -4,9 +4,9 @@
     
 
        <% if @room.photo.attached? %>
-       <%= cl_image_tag @room.photo.key, class: "d-block w-100 rounded mt-3",class: "d-block w-100 rounded mt-3 mx-auto", , height: 300, width: 400, crop: :fill %>
+       <%= cl_image_tag @room.photo.key, class: "d-block w-100 rounded mt-3 mx-auto" , height: 300, width: 400, crop: :fill %>
       <% else %>
-      <%= image_tag "No_image_available", class: "d-block w-100 rounded mt-3", width: 400, height: 300 %>
+      <%= image_tag "No_image_available", class: "d-block w-100 rounded mt-3 mx-auto", width: 400, height: 300 %>
       <% end %>
 
 
