@@ -1,45 +1,46 @@
 <div class="container-fluid mt-3">
   <div class="row">
 <!-- left half of page-->  
-    <div class="col-sm-8">
+    <div class="col-md-8">
 
      <div class="row">
 
       <% @rooms.each do |room| %>
-        <div class="col-xs-12 col-sm-6  ">
+        <div class="col-xs-12 col-md-6  ">
 
-  
+
+          <div class="cardContainer ">
             <%= link_to room_path(room) do %>
+        
+              <div class="card-image">
+                <% if room.photo.attached? %>
+                  <%= cl_image_tag room.photo.key, height: "50%" %>
+                <% else %>
+                  <%= image_tag "no_image_available", height: "50%" %>
+                <% end %>
 
-          <div class="cardContainer m-2">
-
-   <% if room.photo.attached? %>
-       <%= cl_image_tag room.photo.key %>
-      <% else %>
-      <%= image_tag "No_image_available" %>
-      <% end %>
-
-  
-                <div class="card-body">
+              <div class="card-index">
                   <h4 class="card-title"><%= room.name %></h4>
                   <p class="card-text"> <%= room.city %></p>
                   <p class="card-trip-pricing">£<%=  number_with_precision(room.price, precision: 2) %>/night</p>
                 </div>
-          </div>
 
-            <% end %>  
+              </div>
+          
 
-             
+        <% end %>   
+  
+           </div>  <!-- end cardContainer -->
+         
         </div>  <!-- end of xs-12 -->
 
       <% end %> 
   </div>  <!-- end of inner row -->
 
-
   </div>    <!-- end of sm-8-->
   
-  <div class="col-sm-4">
-    <div class="map-container" >
+  <div class="col-md-4">
+    <div class="map-container mt-2" >
         <div id="map"
               data-markers="<%= @markers.to_json %>"
               data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
