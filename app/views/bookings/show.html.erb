@@ -1,10 +1,10 @@
 <div class="container-fluid mt-5">
   <div class="row">
 
-    <% if booking.room.photo.attached? %>
+    <% if @booking.room.photo.attached? %>
       <%= cl_image_tag room.photo.key, class: "d-block w-100 rounded mt-3 mx-auto", width: 300, height: 400, crop: :fill %>
     <% else %>
-      <%= image_tag "No_image_available", class: "d-block w-100 rounded mt-3  mx-auto", width: 300, height: 400, crop: :fill %>
+      <%= image_tag "no_image_available", class: "d-block w-100 rounded mt-3  mx-auto", width: 300, height: 400, crop: :fill %>
     <% end %>
 
     <div class="text-center">

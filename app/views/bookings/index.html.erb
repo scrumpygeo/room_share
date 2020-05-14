@@ -1,54 +1,76 @@
-<div class="container-fluid">
-
-  <h1 class="text-center mt-3">Your Booked Rooms</h1>
-<div class="container-booking">
-
+<div class="container-booking mt-4">
+ <h2 class="text-center mt-2 mb-4">Your Booked Rooms</h2>
   <div class="row">
     <div class="col">
+
+     <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col ">Name</th>
+                <th scope="col">Street</th>
+                <th scope="col">City</th>
+                <th scope="col">Check In</th>
+                <th scope="col">Check Out</th>
+                <th scope="col">Total</th>
+              </tr>
+            </thead>
+
+
+    <tbody>
       <% @bookings.each do |booking| %>
 
-      <div class="row booking-li"> <!-- inner row-->
+  
+            <tr>
+              <td>
+               <%= link_to  booking.room.name, booking_path(booking) %>
+              
+              </td>
 
+              <td>
+                <%= booking.room.street %>
+              </td>
+              <td>
+                <%= booking.room.city %>
+              </td>
 
-      <div class="show-banner">
-            <% if booking.room.photo.attached? %>
-            <%= cl_image_tag @room.photo.key, class: "d-block w-100 rounded mt-3 mx-auto", width: 300, height: 400, crop: :fill %>
-            <% else %>
-            <%= image_tag "No_image_available", class: "d-block w-100 rounded mt-3  mx-auto", width: 300, height: 400, crop: :fill %>
-            <% end %>
-      </div>
+              <td>
+              <%= booking.start_date.strftime("%a, %e %b %Y") %>
+              </td>
 
+              <td>
+              <%= booking.end_date.strftime("%a, %e %b %Y") %>
+              </td>
 
+              <td>
+              £<%=  number_with_precision(booking.price, precision: 2) %>
+              </td>
 
-          <div class="col-sm-4 col-sm-4">
-            <h3><%= booking.room.name %></h3>
-            <p>City: <strong><%= booking.room.city %></strong></p>
-            <p>Address: <strong><%= booking.room.street %></strong></p>
-            <p>Period: <strong> <%= booking.start_date.strftime("%a, %e %b %Y") %> - <%= booking.end_date.strftime("%a, %e %b %Y") %></strong></p>
-            <p>Guests: <strong><%= booking.guest_nr %></strong></p>
-            <p>Total price: <strong>£ <%= booking.price %> </strong></p>
-          </div>
+            
+            <% if booking.status == 'Pending' %>
 
-
-
-
-          <div class="col-sm-4 col-md-4" >
-            <div class="list-unstyled hidden-sm hidden-xs padded">
-                <% if booking.status == 'Pending' %>
-                  <p class="text-center">Confirmation <strong class="text-warning">Pending</strong></p>
-                  <p class="text-center"><%= link_to "Delete this booking", booking_path(booking), method: :delete, class:"btn btn-outline-danger", data: {confirm: "Are you sure"} %></p>
-                <% else %>
-                  <p class="text-center">Booking <strong class="text-success">Confirmed</strong></p>
-                  <p class="text-center"> <%= mail_to booking.room.user.email, "Email owner to cancel", target: :_blank %></p>
+              <td>
+                 <%= link_to  booking_path(booking), method: :delete,  data: {confirm: "Are you sure"}, class: "text-dark" do  %>      
+                  <i class="fas fa-trash-alt text-danger ml-3"></i>
                 <% end %>
-              </div>
-          </div>
+              </td>
+            <% else %>
+              <td>
+                 <p class="text-center"> <%= mail_to booking.room.user.email, "Email owner to cancel", target: :_blank %></p>
+            <% end %>
+              </td>
+           
+            </tr>
+        <% end %>
+          </tbody>
 
-        </div> <!-- end inner row -->
-      <% end %>
+        </table>         
+          
 
-   </div>  <!--  end col-->
-  </div> <!-- end row -->
-</div> <!-- container-booking -->
 
+
+
+
+</div>   <!--col -->
+</div>  <!-- row -->
 </div>
