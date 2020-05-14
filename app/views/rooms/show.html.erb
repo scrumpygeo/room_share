@@ -1,37 +1,26 @@
 <div class="main-container" >
 
-
     <div class="show-room">
-
-    
-    
-        <% if @room.photo.attached? %>
-          <%= cl_image_tag(@room.photo.key, width: 520, height: 400, crop: :fill, class: "mt-3")   %>
-        <% else %>
-          <%= image_tag("no_image_available", width: 520, height: 400, crop: :fill) %>
-        <% end %>
+      <% if @room.photo.attached? %>
+        <%= cl_image_tag(@room.photo.key, width: 520, height: 400, crop: :fill)   %>
+      <% else %>
+        <%= image_tag("no_image_available", width: 520, height: 400, crop: :fill) %>
+      <% end %>
 
 
-        <h1 class="text-center mt-3"><%= @room.name %></h1>
-        <div class="pl-3">
-          <p><%= @room.description %> </p>
-          <p><%= @room.street %>, <%= @room.city %></p>
-          <p>Guests: <%= @room.guest_nr %> &nbsp;&nbsp;&nbsp;&nbsp;     £<%=  number_with_precision(@room.price, precision: 2) %>  </p>
-        </div>
-
-      </div>   <!-- col -->
-
-
-      <div class="show-room" >
-
-          <h2 class="text-center">Book this room</h2>
-
-          <%= render 'bookings/new_booking' %>
-
-        
+      <h1 class="text-center mt-3"><%= @room.name %></h1>
+      <div class="pl-3">
+        <p><%= @room.description %> </p>
+        <p><%= @room.street %>, <%= @room.city %></p>
+        <p>Guests: <%= @room.guest_nr %> &nbsp;&nbsp;&nbsp;&nbsp;     £<%=  number_with_precision(@room.price, precision: 2) %>  </p>
       </div>
-    </div>  <!-- col -->
+
+    </div>   <!-- col -->
+
+    <div class="show-room" >
+        <h2 class="text-center">Book this room</h2>
+        <%= render 'bookings/new_booking' %>    
+    </div>
+   </div>  <!-- col -->
   </div>  <!-- row -->
-
-
 </div>  <!-- end container -->

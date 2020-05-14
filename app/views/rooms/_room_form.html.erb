@@ -1,7 +1,7 @@
  <%= simple_form_for @room do |f| %>
-     <%= f.input :name, as: :string, required: true %>
-     <%= f.input :description, as: :text, required: true %>
-     <%= f.input :price, as: :decimal, required: true %>
+     <%= f.input :name, as: :string, required: true, label: "Property Name" %>
+     <%= f.input :description, as: :text, required: true, placeholder: "Single room in quiet family home" %>
+     <%= f.input :price, as: :decimal, required: true, label: "Price (£)", placeholder: "25.50" %>
      <%= f.input :street, as: :string, required: true %>
      <%= f.input :city, as: :string, required: true %>
      <%= f.input :guest_nr, as: :integer, required: true, label: "Number of Guests" %>

@@ -1,32 +1,26 @@
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-8 offset-2">
-  
-  <div class="show-banner">
-       <% if @room.photo.attached? %>
-       <%= cl_image_tag @room.photo.key, class: "d-block w-00 rounded mt-3",class: "d-block w-100 rounded mt-3", width: 520, height: 400, crop: :fill %>
-      <% else %>
-      <%= image_tag "No_image_available", class: "d-block w-100 rounded mt-3", width: 520, height: 400, crop: :fill %>
+<div class="main-container" >
+
+  <div class="show-room">
+    <% if @room.photo.attached? %>
+      <%= cl_image_tag(@room.photo.key, width: 520, height: 400, crop: :fill)   %>
+    <% else %>
+      <%= image_tag("no_image_available", width: 520, height: 400, crop: :fill) %>
       <% end %>
-</div>
+  </div>
 
-  
+  <div class="show-room pt-3 mt-3">
+    <div class="text-center">
+      <h2 class="text-center mt-3"><%= @room.name %></h2>
 
-   
-  
-      <h1 class="text-center my-3"><%= @room.name %></h1>
-     
-        <div class="col-md-6 offset-md-3">
-          <p><%= @room.description %></p>
-          <p><%= @room.street %>, <%= @room.city %></p>
-          <p>Guests: <%= @room.guest_nr %> &nbsp;&nbsp;&nbsp;&nbsp;     £<%=  number_with_precision(@room.price, precision: 2) %>  </p>
-          <p><%= link_to dashboards_path do %> 
+      <div class="pl-3">
+        <p><%= @room.description %> </p>
+        <p><%= @room.street %>, <%= @room.city %></p>
+        <p>Guests: <%= @room.guest_nr %> &nbsp;&nbsp;&nbsp;&nbsp;     £<%=  number_with_precision(@room.price, precision: 2) %>  </p>
+            <p><%= link_to dashboards_path do %> 
           <i class="fas fa-2x fa-arrow-circle-left text-primary"></i>
           <% end %>
-          </p>
-        </div>
-      
-      
-  </div>
-</div>   <!-- row -->
-</div>
+        </p>
+      </div>
+    </div>  <!-- text-center -->
+  </div> <!-- show-room -->
+</div>  <!-- end container -->

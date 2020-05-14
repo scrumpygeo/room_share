@@ -14,8 +14,7 @@
     <div class="col-xs-12 col-md-6  ">
 
       <div class="cardContainer ">
-        <%= link_to room_path(room) do %>
-        
+        <%= link_to room_path(room) do %>        
           <div class="card-image">
             <% if room.photo.attached? %>
               <%= cl_image_tag room.photo.key, height: "50%", style: "object-fit: cover" %>
