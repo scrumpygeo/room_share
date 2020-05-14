@@ -12,23 +12,26 @@
 
   <div class="show-room pt-3 mt-3">
     <div class="text-center">
-      <p>You have booked: </p> 
-      <p><%= @booking.room.name %> 
+      <p style="color: navy">You have booked: </p> 
+      <h2 class="mb-2 pb-2"><strong><%= @booking.room.name %></strong> </h2>
+      <p style="color: purple"><%= @booking.room.description %> </p>
+      <p>located at <%= @booking.room.street %> in <%= @booking.room.city %></p>
 
-    <table class="table table-borderless">  
+    <table class="table table-borderless ml-3">  
        <tr>
-         <td>from</td>
+         <td style="color: green">from</td>
          <td> <%= @booking.start_date %></td>
       </tr>
       <tr >
-         <td>to</td>
+         <td style="color: tomato">to</td>
          <td> <%= @booking.end_date %></td>     
       </tr>
     
     </table>
 
+
   <br>
-    <p>click below to see your other bookings: </p>
+    <p style="color: rgb(255,140,0)"><em>click below to see your other bookings: </em></p>
     <p>  <%= link_to "Bookings", bookings_path, class: "btn btn-warning pt-2 mb-3 mt-3" %> </p> 
   </div>  <!-- text-center -->
     </div>
