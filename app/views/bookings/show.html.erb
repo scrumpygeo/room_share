@@ -1,18 +1,35 @@
-<div class="container-fluid mt-5">
-  <div class="row">
+<div class="main-container" >
+
+   <div class="show-room">
 
     <% if @booking.room.photo.attached? %>
-      <%= cl_image_tag room.photo.key, class: "d-block w-100 rounded mt-3 mx-auto", width: 300, height: 400, crop: :fill %>
+      <%= cl_image_tag(@booking.room.photo.key, width: 520, height: 400, crop: :fill, class: "mt-3")   %>
     <% else %>
-      <%= image_tag "no_image_available", class: "d-block w-100 rounded mt-3  mx-auto", width: 300, height: 400, crop: :fill %>
+      <%= image_tag("no_image_available", width: 520, height: 400, crop: :fill, class: "mt-3") %>
     <% end %>
 
+  </div>
+
+  <div class="show-room pt-3 mt-3">
     <div class="text-center">
-      <p>You have just booked <%= @booking.room.name %> from <%= @booking.start_date %> 
-  to   <%= @booking.end_date %> pending confirmation from owner.</p>
+      <p>You have booked: </p> 
+      <p><%= @booking.room.name %> 
+
+    <table class="table table-borderless">  
+       <tr>
+         <td>from</td>
+         <td> <%= @booking.start_date %></td>
+      </tr>
+      <tr >
+         <td>to</td>
+         <td> <%= @booking.end_date %></td>     
+      </tr>
+    
+    </table>
 
   <br>
-    <p>click here to see a list of your bookings: </p>
+    <p>click below to see your other bookings: </p>
     <p>  <%= link_to "Bookings", bookings_path, class: "btn btn-warning pt-2 mb-3 mt-3" %> </p> 
+  </div>  <!-- text-center -->
     </div>
    </div>   

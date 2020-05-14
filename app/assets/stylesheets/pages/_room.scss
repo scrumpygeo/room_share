@@ -16,6 +16,9 @@
   .main-container {
     width: 900px;
   }
+  .show-room {
+    margin: 10px auto;
+  }
 }
 
 @media (max-width: 992px) {
@@ -23,16 +26,25 @@
     width: 700px;
     flex-direction: column;
   }
+  .show-room {
+    margin: 10px auto;
+  }
 }
 
 @media (max-width: 768px) {
   .main-container {
     width: 500px;
   }
+  .show-room {
+    margin: 10px auto;
+  }
 }
 
 @media (max-width: 576px) {
   .main-container {
     width: 400px;
+  }
+  .show-room {
+    margin: 10px auto;
   }
 }
