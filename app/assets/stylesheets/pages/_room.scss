@@ -1,3 +1,38 @@
 .main-container {
   display: flex;
+  justify-content: center;
+  padding: 15px 0;
+  margin: 15px auto;
+}
+
+.show-room {
+  margin: 10px 60px;
+}
+
+
+/* Media Queries */
+/* 576px, 768px, 992px and 1200p */
+@media (max-width: 1200px) {
+  .main-container {
+    width: 900px;
+  }
+}
+
+@media (max-width: 992px) {
+  .main-container {
+    width: 700px;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-container {
+    width: 500px;
+  }
+}
+
+@media (max-width: 576px) {
+  .main-container {
+    width: 400px;
+  }
 }
