@@ -14,7 +14,7 @@
         
               <div class="card-image">
                 <% if room.photo.attached? %>
-                  <%= cl_image_tag room.photo.key, height: "50%" %>
+                  <%= cl_image_tag room.photo.key, height: "50%", style: "object-fit: cover" %>
                 <% else %>
                   <%= image_tag "no_image_available", height: "50%" %>
                 <% end %>

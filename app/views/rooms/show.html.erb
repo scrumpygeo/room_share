@@ -14,7 +14,7 @@
 
         <h1 class="text-center mt-3"><%= @room.name %></h1>
         <div class="pl-3">
-          <p><%= @room.description %></p>
+          <p><%= @room.description %> </p>
           <p><%= @room.street %>, <%= @room.city %></p>
           <p>Guests: <%= @room.guest_nr %> &nbsp;&nbsp;&nbsp;&nbsp;     £<%=  number_with_precision(@room.price, precision: 2) %>  </p>
         </div>
@@ -22,7 +22,7 @@
       </div>   <!-- col -->
 
 
-      <div class="show-room sticky-top" >
+      <div class="show-room" >
 
           <h2 class="text-center">Book this room</h2>
 

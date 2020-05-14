@@ -5,7 +5,7 @@
 
 
 
-  <div class="search-bar">
+  <div class="search-bar collapse navbar-collapse">
     <div  class="form-inline padded">
       <%= simple_form_for :search,  wrapper: :inline_form, method: :get, url: rooms_path,  class: 'form-inline' do |t| %>
         <%= t.input :city,  label: false, input_html: { value: "", class:"form-control border-radius input", placeholder: "Cricklewood" } %>
@@ -19,8 +19,11 @@
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
+  
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+  
     <ul class="navbar-nav mr-auto">
       <% if user_signed_in? %>
         <li class="nav-item active">
