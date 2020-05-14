@@ -3,28 +3,25 @@
   <div class="row">
     <div class="col">
 
-     <div class="table-responsive">
-          <table class="table table-hover">
-            <thead>
-              <tr>
-                <th scope="col ">Name</th>
-                <th scope="col">Street</th>
-                <th scope="col">City</th>
-                <th scope="col">Check In</th>
-                <th scope="col">Check Out</th>
-                <th scope="col">Total</th>
-              </tr>
-            </thead>
+    <div class="table-responsive">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col ">Name</th>
+            <th scope="col">Street</th>
+            <th scope="col">City</th>
+            <th scope="col">Check In</th>
+            <th scope="col">Check Out</th>
+            <th scope="col">Total</th>
+            <th scope="col">Confirmed</th>
+          </tr>
+        </thead>
 
-
-    <tbody>
-      <% @bookings.each do |booking| %>
-
-  
+        <tbody>
+          <% @bookings.each do |booking| %>
             <tr>
               <td>
-               <%= link_to  booking.room.name, booking_path(booking) %>
-              
+                <%= link_to  booking.room.name, booking_path(booking) %>
               </td>
 
               <td>
@@ -33,44 +30,40 @@
               <td>
                 <%= booking.room.city %>
               </td>
-
               <td>
-              <%= booking.start_date.strftime("%a, %e %b %Y") %>
+                <%= booking.start_date.strftime("%a, %e %b %Y") %>
+              </td>
+              <td>
+                <%= booking.end_date.strftime("%a, %e %b %Y") %>
               </td>
 
               <td>
-              <%= booking.end_date.strftime("%a, %e %b %Y") %>
+                £<%=  number_with_precision(booking.price, precision: 2) %>
               </td>
 
+              <% if booking.status == 'Pending' %>
+                <td>
+                  <i class="fas fa-hourglass text-warning pl-3 ml-3"></i>
+                </td>
+                <td>
+                  <%= link_to  booking_path(booking), method: :delete,  data: {confirm: "Are you sure"}, class: "text-dark" do  %>      
+                    <i class="fas fa-trash-alt text-danger ml-3"></i>
+                  <% end %>
+                </td>
+              <% else %>
+                <td>
+                  <i class="fas fa-check text-success pl-3 ml-3"></i>
+                </td>
               <td>
-              £<%=  number_with_precision(booking.price, precision: 2) %>
-              </td>
-
-            
-            <% if booking.status == 'Pending' %>
-
-              <td>
-                 <%= link_to  booking_path(booking), method: :delete,  data: {confirm: "Are you sure"}, class: "text-dark" do  %>      
-                  <i class="fas fa-trash-alt text-danger ml-3"></i>
-                <% end %>
-              </td>
-            <% else %>
-              <td>
-                 <p class="text-center"> <%= mail_to booking.room.user.email, "Email owner to cancel", target: :_blank %></p>
-            <% end %>
-              </td>
-           
+                <p class="text-center"> <%= mail_to booking.room.user.email, "Email to cancel", target: :_blank %></p>
+              <% end %>
+                </td>
             </tr>
-        <% end %>
-          </tbody>
+          <% end %>
 
-        </table>         
+        </tbody>
+      </table>         
           
-
-
-
-
-
-</div>   <!--col -->
-</div>  <!-- row -->
+    </div>   <!--col -->
+  </div>  <!-- row -->
 </div>
