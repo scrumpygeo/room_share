@@ -1,9 +1,10 @@
 class Booking < ApplicationRecord
   belongs_to :room
   belongs_to :user
-  validates :guest_nr, presence: true, numericality: { greater_than_or_equal_to: 0 }
+  validates :guest_nr, presence: true, numericality: { greater_than: 0 }
   validates :start_date, :end_date, presence: true
   validate :out_greater_than_in
+  validates :price, presence: true, numericality: { greater_than: 0 }
 
   validate :guest_max
 

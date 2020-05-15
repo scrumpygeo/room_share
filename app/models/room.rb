@@ -2,6 +2,8 @@ class Room < ApplicationRecord
   belongs_to :user
   has_many :bookings, dependent: :destroy
   has_one_attached :photo
+  validates :guest_nr, presence: true, numericality: { greater_than: 0 }
+  validates :price, presence: true, numericality: { greater_than: 0, less_than: 1000 }
 
   after_validation :geocode
 
