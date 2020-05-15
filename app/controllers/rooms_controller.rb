@@ -7,14 +7,15 @@ class RoomsController < ApplicationController
     
     if @search.present?
       @city = @search["city"]
-      @rooms = Room.where("city ILIKE ?", "%#{@city}%")
+      # @rooms = Room.where("city ILIKE ?", "%#{@city}%")
+      @rooms = policy_scope(Room).where("city ILIKE ?", "%#{@city}%")
     end
 
    
     if @rooms.blank?
       @msg = "Sorry. No suitable rooms in your desired location. Please try again."
       # @rooms = Room.all
-      @rooms = policy_scope(Room)
+      @rooms = policy_scope(Room).order(city: :asc)
     end
 
     # @rooms = Room.geocoded # returns rooms with coordinates

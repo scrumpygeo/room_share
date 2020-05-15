@@ -2,10 +2,11 @@ class BookingsController < ApplicationController
   before_action :set_booking, only: [:show, :edit, :update, :destroy ]
 
   def index 
-    @bookings = Booking.where(user_id: current_user.id).order('start_date ASC')
+    # @bookings = Booking.where(user_id: current_user.id).order('start_date ASC')
+    @bookings = policy_scope(Booking).where(user_id: current_user.id).order('start_date ASC')
   end
 
-    def new
+  def new
     @room = Room.find([:room_id])
     @booking = Booking.new
   end
@@ -17,6 +18,8 @@ class BookingsController < ApplicationController
     @booking.room = @room
     @booking.user = current_user
     @booking.status = "Pending"
+
+    authorize @booking
 
     if @booking.end_date && @booking.start_date
       @booking.price = (@booking.end_date - @booking.start_date).to_f * @booking.room.price.to_f
@@ -47,6 +50,7 @@ class BookingsController < ApplicationController
 
     def set_booking 
       @booking = Booking.find(params[:id])
+      authorize @booking
     end
 
     def booking_params

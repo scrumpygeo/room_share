@@ -11,7 +11,7 @@ class ApplicationPolicy
   end
 
   def show?
-    false
+    @record.user == @user
   end
 
   def create?

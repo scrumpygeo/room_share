@@ -19,7 +19,11 @@
 
             <tr>
               <td>
-               <%= link_to  room.name, dashboard_path(room) %>
+                <% if policy(room).show? %>
+                <%= link_to  room.name, dashboard_path(room) %>
+               <% else %>
+                <%= room.name %>
+               <% end %>
               
               </td>
 
