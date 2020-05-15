@@ -3,16 +3,18 @@ class RoomsController < ApplicationController
   before_action :set_room, only: [:show, :edit, :update, :destroy]
 
   def index
-    
     @search = params["search"]
+    
     if @search.present?
       @city = @search["city"]
       @rooms = Room.where("city ILIKE ?", "%#{@city}%")
     end
 
+   
     if @rooms.blank?
       @msg = "Sorry. No suitable rooms in your desired location. Please try again."
-      @rooms = Room.all
+      # @rooms = Room.all
+      @rooms = policy_scope(Room)
     end
 
     # @rooms = Room.geocoded # returns rooms with coordinates
@@ -33,12 +35,14 @@ class RoomsController < ApplicationController
 
   def new
     @room = Room.new
+    authorize @room
   end
 
   def create 
     # @booking = Booking.new(flat_params)
     @room = Room.new(room_params)
     @room.user = current_user
+    authorize @room
     if @room.save
       redirect_to dashboards_path
     else
@@ -67,5 +71,6 @@ class RoomsController < ApplicationController
 
   def set_room
     @room = Room.find(params[:id])
+    authorize @room
   end
 end
